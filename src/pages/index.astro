@@ -1,17 +1,431 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
 
+const menu = [
+  { label: "INICIO", href: "#" },
+  { label: "QUIÉNES SOMOS", href: "#" },
+  { label: "NOTICIAS", href: "#" },
+  { label: "CONTACTO", href: "#" }
+];
+
+const slides = [
+  {
+    image: "/images/slide1.png",
+    title: "Bienvenido a tu\nEscuela Esperanza",
+    subtitle: "Escuela Esperanza",
+    extra: "",
+    button: ""
+  },
+  {
+    image: "/images/slide2.png",
+    title: "Visita Nuestra escuela\nY encontraras esperanza",
+    subtitle: "Escuela Esperanza",
+    extra: "",
+    button: "Leer más"
+  },
+  {
+    image: "/images/slide3.png",
+    title: "Talleres\nExtraescolares 2026",
+    subtitle: "Educación básica - Escuela Esperanza",
+    extra: "Inscripciones abiertas durante ---",
+    button: "Leer más"
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Escuela Esperanza">
+  <!-- HEADER ESCRITORIO -->
+  <header class="desktop-header">
+    <div class="top-header">
+      <div class="brand-area">
+        <div class="brand-wrap">
+          <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+          <div class="brand-text">
+            <span class="line1">Escuela</span>
+            <span class="line2">Esperanza</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-area">
+        <div class="nav-content">
+          <ul class="menu">
+            {menu.map((item) => (
+              <li><a href={item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+
+          <div class="nav-icons">
+            <a href="#" class="circle-icon" aria-label="Buscar">
+              <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="circle-icon" aria-label="Acceso">
+              <i class="fas fa-lock"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <section class="contact-bar">
+      <div class="contact-content">
+        <div class="contact-item">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>contacto@escuelaesperanza.cl</span>
+        </div>
+
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>trabaja con nosotros</span>
+        </div>
+
+        <div class="contact-item">
+          <i class="fa-regular fa-clock"></i>
+          <span>lunes - viernes: 08:30 - 18:30 hrs</span>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <!-- HEADER MÓVIL -->
+  <header class="mobile-header">
+    <div class="mobile-topbar">
+      <button class="mobile-icon-btn" id="openMenuBtn" aria-label="Abrir menú" type="button">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <a href="#" class="mobile-brand">
+        <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+        <span>Escuela Esperanza</span>
+      </a>
+
+      <a href="#" class="mobile-icon-btn" aria-label="Buscar">
+        <i class="fa-solid fa-search"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- BARRA FIJA AL HACER SCROLL -->
+  <div class="scroll-header" id="scrollHeader">
+    <div class="scroll-header-container scroll-header-desktop">
+      <a href="#" class="scroll-brand">
+        <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+        <span>Escuela Esperanza</span>
+      </a>
+
+      <nav class="scroll-nav">
+        <a href="#">INICIO</a>
+        <a href="#">QUIÉNES SOMOS</a>
+        <a href="#">NOTICIAS</a>
+        <a href="#">CONTACTO</a>
+      </nav>
+
+      <div class="scroll-icons">
+        <a href="#" class="scroll-icon" aria-label="Buscar">
+          <i class="fas fa-search"></i>
+        </a>
+        <a href="#" class="scroll-icon" aria-label="Acceso">
+          <i class="fas fa-lock"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-header-container-mobile">
+      <button
+        class="scroll-mobile-btn"
+        id="openMenuBtnScroll"
+        aria-label="Abrir menú"
+        type="button"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <a href="#" class="scroll-mobile-brand">
+        <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+        <span>Escuela Esperanza</span>
+      </a>
+
+      <a href="#" class="scroll-mobile-btn" aria-label="Buscar">
+        <i class="fa-solid fa-search"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- MENÚ MÓVIL -->
+  <aside class="mobile-menu-overlay" id="mobileOverlay"></aside>
+
+  <aside class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <div class="mobile-search">
+        <input type="text" placeholder="Buscar..." />
+        <button aria-label="Buscar" type="button">
+          <i class="fa-solid fa-search"></i>
+        </button>
+      </div>
+
+      <button class="close-menu-btn" id="closeMenuBtn" aria-label="Cerrar menú" type="button">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="mobile-menu-nav">
+      <a href="#">INICIO</a>
+      <a href="#">QUIÉNES SOMOS</a>
+      <a href="#">NOTICIAS</a>
+      <a href="#">CONTACTO</a>
+    </nav>
+  </aside>
+
+  <!-- CARRUSEL -->
+  <section class="hero-slider" id="top">
+    {slides.map((slide, index) => (
+      <article class={`slide ${index === 0 ? "active" : ""}`}>
+        <img src={slide.image} alt={slide.title.replace("\n", " ")} />
+
+        <div class="slide-content">
+          <img
+            class="slide-logo"
+            src="/images/logo-escuela.png"
+            alt="Logo Escuela Esperanza"
+          />
+
+          <div class="slide-text">
+            <h1 class="slide-title">
+              {slide.title.split("\n").map((line) => (
+                <>
+                  {line}
+                  <br />
+                </>
+              ))}
+            </h1>
+
+            <p class="slide-subtitle">{slide.subtitle}</p>
+
+            {slide.extra && <p class="slide-extra">{slide.extra}</p>}
+
+            {slide.button && (
+              <a href="#" class="slide-button">{slide.button}</a>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+
+    <button class="slider-btn prev" id="prevBtn" aria-label="Anterior" type="button">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <button class="slider-btn next" id="nextBtn" aria-label="Siguiente" type="button">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <div class="slider-dots">
+      {slides.map((_, index) => (
+        <button
+          class={`slider-dot ${index === 0 ? "active" : ""}`}
+          data-index={index}
+          aria-label={`Ir al slide ${index + 1}`}
+          type="button"
+        ></button>
+      ))}
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3 CÍRCULOS -->
+  <section class="features-section">
+    <div class="features-container">
+      <article class="feature-circle-card">
+        <div class="feature-circle">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h3>Excelencia Académica</h3>
+        <p>
+          Formamos estudiantes con compromiso, esfuerzo y una educación centrada
+          en el aprendizaje integral.
+        </p>
+      </article>
+
+      <article class="feature-circle-card">
+        <div class="feature-circle">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <h3>Comunidad y Valores</h3>
+        <p>
+          Promovemos el respeto, la convivencia y el trabajo colaborativo dentro
+          y fuera del aula.
+        </p>
+      </article>
+
+      <article class="feature-circle-card">
+        <div class="feature-circle">
+          <i class="fa-solid fa-futbol"></i>
+        </div>
+        <h3>Actividades Escolares</h3>
+        <p>
+          Impulsamos talleres, deporte, cultura y experiencias que fortalecen el
+          desarrollo de cada estudiante.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top-line"></div>
+
+    <div class="footer-main">
+      <div class="footer-brand-block">
+        <div class="footer-logo-wrap">
+          <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+          <div class="footer-brand-text">
+            <h3>Escuela Esperanza</h3>
+            <p>Formando con valores, compromiso y comunidad.</p>
+          </div>
+        </div>
+
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h4>Escuela</h4>
+        <a href="#">Nuestra historia</a>
+        <a href="#">Misión y visión</a>
+        <a href="#">Proyecto educativo</a>
+        <a href="#">Equipo docente</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Información</h4>
+        <a href="#">Noticias</a>
+        <a href="#">Comunicados</a>
+        <a href="#">Calendario escolar</a>
+        <a href="#">Admisión</a>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contacto</h4>
+        <p><i class="fa-solid fa-location-dot"></i> 12 1/2 Sur, Talca, Chile</p>
+        <p><i class="fa-solid fa-phone"></i> +56 9 1234 5678</p>
+        <p><i class="fa-solid fa-envelope"></i> contacto@escuelaesperanza.cl</p>
+        <p><i class="fa-regular fa-clock"></i> Lun - Vie: 08:30 a 18:30</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Escuela Esperanza. Todos los derechos reservados.</p>
+
+      <a href="#top" class="back-to-top" aria-label="Volver arriba">
+        <i class="fa-solid fa-chevron-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script is:inline>
+    const slideItems = Array.from(document.querySelectorAll(".slide"));
+    const dots = Array.from(document.querySelectorAll(".slider-dot"));
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let current = 0;
+    let intervalId = null;
+
+    function showSlide(index) {
+      slideItems.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+
+      current = index;
+    }
+
+    function nextSlide() {
+      showSlide((current + 1) % slideItems.length);
+    }
+
+    function prevSlide() {
+      showSlide((current - 1 + slideItems.length) % slideItems.length);
+    }
+
+    function startSlider() {
+      intervalId = window.setInterval(nextSlide, 4500);
+    }
+
+    function resetSlider() {
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+      }
+      startSlider();
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        nextSlide();
+        resetSlider();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        prevSlide();
+        resetSlider();
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const index = Number(dot.getAttribute("data-index"));
+        showSlide(index);
+        resetSlider();
+      });
+    });
+
+    if (slideItems.length > 0) {
+      startSlider();
+    }
+
+    const openMenuBtn = document.getElementById("openMenuBtn");
+    const openMenuBtnScroll = document.getElementById("openMenuBtnScroll");
+    const closeMenuBtn = document.getElementById("closeMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileOverlay = document.getElementById("mobileOverlay");
+
+    function openMenu() {
+      if (mobileMenu) mobileMenu.classList.add("active");
+      if (mobileOverlay) mobileOverlay.classList.add("active");
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      if (mobileMenu) mobileMenu.classList.remove("active");
+      if (mobileOverlay) mobileOverlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    }
+
+    if (openMenuBtn) openMenuBtn.addEventListener("click", openMenu);
+    if (openMenuBtnScroll) openMenuBtnScroll.addEventListener("click", openMenu);
+    if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
+    if (mobileOverlay) mobileOverlay.addEventListener("click", closeMenu);
+
+    const scrollHeader = document.getElementById("scrollHeader");
+
+    function handleScrollHeader() {
+      if (!scrollHeader) return;
+
+      if (window.scrollY > 220) {
+        scrollHeader.classList.add("visible");
+      } else {
+        scrollHeader.classList.remove("visible");
+      }
+    }
+
+    window.addEventListener("scroll", handleScrollHeader);
+    handleScrollHeader();
+  </script>
+</MainLayout>
