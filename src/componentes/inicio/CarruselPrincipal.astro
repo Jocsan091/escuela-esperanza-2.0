@@ -1,0 +1,57 @@
+---
+import { slides } from "../../data/siteData";
+---
+
+<section class="hero-slider" id="top">
+  {slides.map((slide, index) => (
+    <article class={`slide ${index === 0 ? "active" : ""}`}>
+      <img src={slide.image} alt={slide.title.replace("\n", " ")} />
+
+      <div class="slide-content">
+        <img
+          class="slide-logo"
+          src="/images/logo-escuela.png"
+          alt="Logo Escuela Esperanza"
+        />
+
+        <div class="slide-text">
+          <h1 class="slide-title">
+            {slide.title.split("\n").map((line) => (
+              <>
+                {line}
+                <br />
+              </>
+            ))}
+          </h1>
+
+          <p class="slide-subtitle">{slide.subtitle}</p>
+
+          {slide.extra && <p class="slide-extra">{slide.extra}</p>}
+
+          {slide.button && (
+            <a href="#" class="slide-button">{slide.button}</a>
+          )}
+        </div>
+      </div>
+    </article>
+  ))}
+
+  <button class="slider-btn prev" id="prevBtn" aria-label="Anterior" type="button">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <button class="slider-btn next" id="nextBtn" aria-label="Siguiente" type="button">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <div class="slider-dots">
+    {slides.map((_, index) => (
+      <button
+        class={`slider-dot ${index === 0 ? "active" : ""}`}
+        data-index={index}
+        aria-label={`Ir al slide ${index + 1}`}
+        type="button"
+      ></button>
+    ))}
+  </div>
+</section>

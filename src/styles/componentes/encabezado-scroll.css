@@ -1,0 +1,130 @@
+/* =========================
+   BARRA FIJA AL HACER SCROLL
+========================= */
+.scroll-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1200;
+  background: rgba(91, 156, 102, 0.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.scroll-header.visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-header-desktop {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 74px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.scroll-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.scroll-brand img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.scroll-brand span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 0.9;
+}
+
+.scroll-nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.scroll-nav a {
+  color: var(--blanco);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.scroll-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.14);
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-header-container-mobile {
+  display: none;
+  min-height: 68px;
+  padding: 0 14px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.scroll-mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 70%;
+}
+
+.scroll-mobile-brand img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.scroll-mobile-brand span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 0.9;
+}
+
+.scroll-mobile-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.14);
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+}

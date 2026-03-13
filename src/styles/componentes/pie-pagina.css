@@ -1,0 +1,135 @@
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+  background: linear-gradient(180deg, var(--footer-bg), var(--footer-bg-2));
+  color: var(--footer-text);
+}
+
+.footer-top-line {
+  width: 100%;
+  height: 6px;
+  background: var(--amarillo);
+}
+
+.footer-main {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 70px 24px 50px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1.2fr;
+  gap: 42px;
+}
+
+.footer-brand-block {
+  color: var(--footer-text);
+}
+
+.footer-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.footer-logo-wrap img {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+}
+
+.footer-brand-text h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.4rem;
+  color: var(--blanco);
+  margin-bottom: 8px;
+}
+
+.footer-brand-text p {
+  color: var(--footer-muted);
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-socials a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.footer-socials a:hover {
+  background: var(--verde-principal);
+  transform: translateY(-2px);
+}
+
+.footer-column h4 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.55rem;
+  color: var(--blanco);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.footer-column a,
+.footer-column p {
+  display: block;
+  color: var(--footer-muted);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.footer-column a:hover {
+  color: var(--blanco);
+}
+
+.footer-column p i {
+  width: 20px;
+  margin-right: 8px;
+  color: var(--amarillo);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 22px 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.footer-bottom p {
+  color: var(--footer-muted);
+}
+
+.back-to-top {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  color: #1c291e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  transition: all 0.25s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+}

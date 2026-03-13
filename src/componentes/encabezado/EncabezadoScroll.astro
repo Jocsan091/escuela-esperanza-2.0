@@ -1,0 +1,47 @@
+---
+import { menu } from "../../data/siteData";
+---
+
+<div class="scroll-header" id="scrollHeader">
+  <div class="scroll-header-container scroll-header-desktop">
+    <a href="#" class="scroll-brand">
+      <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+      <span>Escuela Esperanza</span>
+    </a>
+
+    <nav class="scroll-nav">
+      {menu.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="scroll-icons">
+      <a href="#" class="scroll-icon" aria-label="Buscar">
+        <i class="fas fa-search"></i>
+      </a>
+      <a href="#" class="scroll-icon" aria-label="Acceso">
+        <i class="fas fa-lock"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-header-container-mobile">
+    <button
+      class="scroll-mobile-btn"
+      id="openMenuBtnScroll"
+      aria-label="Abrir menú"
+      type="button"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="#" class="scroll-mobile-brand">
+      <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+      <span>Escuela Esperanza</span>
+    </a>
+
+    <a href="#" class="scroll-mobile-btn" aria-label="Buscar">
+      <i class="fa-solid fa-search"></i>
+    </a>
+  </div>
+</div>

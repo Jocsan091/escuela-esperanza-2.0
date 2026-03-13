@@ -1,0 +1,74 @@
+---
+import { menu } from "../../data/siteData";
+---
+
+<!-- HEADER ESCRITORIO -->
+<header class="desktop-header">
+  <div class="top-header">
+    <div class="brand-area">
+      <div class="brand-wrap">
+        <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+        <div class="brand-text">
+          <span class="line1">Escuela</span>
+          <span class="line2">Esperanza</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav-area">
+      <div class="nav-content">
+        <ul class="menu">
+          {menu.map((item) => (
+            <li><a href={item.href}>{item.label}</a></li>
+          ))}
+        </ul>
+
+        <div class="nav-icons">
+          <a href="#" class="circle-icon" aria-label="Buscar">
+            <i class="fas fa-search"></i>
+          </a>
+          <a href="#" class="circle-icon" aria-label="Acceso">
+            <i class="fas fa-lock"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="contact-bar">
+    <div class="contact-content">
+      <div class="contact-item">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span>contacto@escuelaesperanza.cl</span>
+      </div>
+
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <span>trabaja con nosotros</span>
+      </div>
+
+      <div class="contact-item">
+        <i class="fa-regular fa-clock"></i>
+        <span>lunes - viernes: 08:30 - 18:30 hrs</span>
+      </div>
+    </div>
+  </section>
+</header>
+
+<!-- HEADER MÓVIL -->
+<header class="mobile-header">
+  <div class="mobile-topbar">
+    <button class="mobile-icon-btn" id="openMenuBtn" aria-label="Abrir menú" type="button">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <a href="#" class="mobile-brand">
+      <img src="/images/logo-escuela.png" alt="Logo Escuela Esperanza" />
+      <span>Escuela Esperanza</span>
+    </a>
+
+    <a href="#" class="mobile-icon-btn" aria-label="Buscar">
+      <i class="fa-solid fa-search"></i>
+    </a>
+  </div>
+</header>

@@ -1,0 +1,18 @@
+:root {
+  --verde-principal: #5b9c66;
+  --verde-oscuro: #417f4d;
+  --verde-barra: #9dad9b;
+  --gris-claro: #f1f1f1;
+  --gris-muy-claro: #f7f7f7;
+  --blanco: #ffffff;
+  --negro: #111111;
+  --amarillo: #d8b548;
+
+  --sombra: rgba(0, 0, 0, 0.42);
+  --sombra-suave: rgba(0, 0, 0, 0.12);
+
+  --footer-bg: #243427;
+  --footer-bg-2: #1a261c;
+  --footer-text: #dce7dd;
+  --footer-muted: #b4c0b5;
+}

@@ -1,0 +1,55 @@
+/* =========================
+   SECCIÓN 3 CÍRCULOS
+========================= */
+.features-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 90px 20px 80px;
+}
+
+.features-container {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  align-items: start;
+}
+
+.feature-circle-card {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.feature-circle {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 26px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--verde-principal), var(--verde-oscuro));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 4rem;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+  border: 6px solid #eef4ee;
+}
+
+.feature-circle-card h3 {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  color: var(--verde-oscuro);
+  margin-bottom: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.feature-circle-card p {
+  max-width: 320px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+}
