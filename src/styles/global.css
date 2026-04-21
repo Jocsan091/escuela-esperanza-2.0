@@ -9,5 +9,4 @@
 @import "./componentes/seccion-circulos.css";
 @import "./componentes/pie-pagina.css";
 
-@import "./responsive/tablet.css";
-@import "./responsive/movil.css";
+@import "./responsive.css";

@@ -43,14 +43,8 @@
   gap: 16px;
 }
 
-.mobile-search {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  background: #252525;
-  border: 1px solid #444;
-  padding: 0 12px;
-  height: 54px;
+.mobile-menu-logo {
+  width: 120px;
 }
 
 .mobile-search input {
