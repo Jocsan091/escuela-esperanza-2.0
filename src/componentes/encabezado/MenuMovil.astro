@@ -1,9 +1,13 @@
+---
+import { menu } from "../../data/siteData";
+---
+
 <aside class="mobile-menu-overlay" id="mobileOverlay"></aside>
 
 <aside class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-header">
     <div class="mobile-menu-logo">
-      <img src="/images/logo-escuela.png" alt="Logo de escuela esperanza" />
+      <img src="/images/logo-escuela.png" alt="Logo de Escuela Esperanza" />
     </div>
 
     <button class="close-menu-btn" id="closeMenuBtn" aria-label="Cerrar menú" type="button">
@@ -12,9 +16,8 @@
   </div>
 
   <nav class="mobile-menu-nav">
-    <a href="#">INICIO</a>
-    <a href="#">QUIÉNES SOMOS</a>
-    <a href="#">NOTICIAS</a>
-    <a href="#">CONTACTO</a>
+    {menu.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
   </nav>
 </aside>

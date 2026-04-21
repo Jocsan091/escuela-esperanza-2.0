@@ -90,6 +90,11 @@
   .footer-main {
     grid-template-columns: 1fr 1fr;
   }
+
+  .about-preview-container,
+  .about-page-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -172,8 +177,21 @@
     right: 10px;
   }
 
+  .about-preview-section {
+    padding: 70px 20px 30px;
+  }
+
+  .about-preview-content h2 {
+    font-size: 2.6rem;
+  }
+
+  .about-preview-media img,
+  .about-page-media img {
+    height: 320px;
+  }
+
   .features-section {
-    padding: 70px 20px 60px;
+    padding: 60px 20px;
   }
 
   .features-container {
@@ -194,6 +212,18 @@
 
   .feature-circle-card p {
     max-width: 420px;
+  }
+
+  .internal-hero {
+    padding: 70px 20px 60px;
+  }
+
+  .internal-hero h1 {
+    font-size: 2.9rem;
+  }
+
+  .about-page-section {
+    padding: 60px 20px 70px;
   }
 
   .footer-main {

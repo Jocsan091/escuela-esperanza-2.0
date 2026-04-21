@@ -1,0 +1,21 @@
+---
+import { quienesSomosResumen } from "../../data/siteData";
+---
+
+<section class="about-preview-section">
+  <div class="about-preview-container">
+    <div class="about-preview-content">
+      <span class="about-preview-kicker">{quienesSomosResumen.titulo}</span>
+      <h2>{quienesSomosResumen.subtitulo}</h2>
+      <p>{quienesSomosResumen.texto}</p>
+
+      <a href="/quienes-somos" class="about-preview-button">
+        {quienesSomosResumen.boton}
+      </a>
+    </div>
+
+    <div class="about-preview-media">
+      <img src={quienesSomosResumen.imagen} alt="Escuela Esperanza" />
+    </div>
+  </div>
+</section>

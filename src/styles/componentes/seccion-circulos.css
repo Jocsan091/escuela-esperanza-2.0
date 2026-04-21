@@ -1,10 +1,78 @@
 /* =========================
+   QUIÉNES SOMOS PREVIEW
+========================= */
+.about-preview-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 90px 20px 40px;
+}
+
+.about-preview-container {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.about-preview-content {
+  text-align: left;
+}
+
+.about-preview-kicker {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--verde-principal);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-preview-content h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 3.4rem;
+  line-height: 0.98;
+  text-transform: uppercase;
+  color: var(--verde-oscuro);
+  margin-bottom: 20px;
+}
+
+.about-preview-content p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #555;
+  text-align: justify;
+  margin-bottom: 28px;
+}
+
+.about-preview-button {
+  display: inline-block;
+  background: var(--amarillo);
+  color: #1d2a1f;
+  padding: 14px 34px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.about-preview-media img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+}
+
+/* =========================
    SECCIÓN 3 CÍRCULOS
 ========================= */
 .features-section {
   width: 100%;
   background: #ffffff;
-  padding: 90px 20px 80px;
+  padding: 50px 20px 80px;
 }
 
 .features-container {

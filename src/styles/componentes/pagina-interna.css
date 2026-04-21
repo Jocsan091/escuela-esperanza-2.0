@@ -1,0 +1,63 @@
+/* =========================
+   PÁGINA INTERNA
+========================= */
+.internal-page {
+  background: #fff;
+}
+
+.internal-hero {
+  background: linear-gradient(135deg, var(--verde-principal), var(--verde-oscuro));
+  color: var(--blanco);
+  padding: 90px 20px 80px;
+}
+
+.internal-hero-content {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.internal-kicker {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.internal-hero h1 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.about-page-section {
+  padding: 80px 20px 90px;
+}
+
+.about-page-container {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.about-page-content p {
+  margin-bottom: 22px;
+  color: #555;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+.about-page-media img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+}

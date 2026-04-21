@@ -1,0 +1,41 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Encabezado from "../componentes/encabezado/Encabezado.astro";
+import EncabezadoScroll from "../componentes/encabezado/EncabezadoScroll.astro";
+import MenuMovil from "../componentes/encabezado/MenuMovil.astro";
+import PiePagina from "../componentes/pie-pagina/PiePagina.astro";
+import ScriptsSitio from "../componentes/sistema/ScriptsSitio.astro";
+import { quienesSomosDetalle } from "../data/siteData";
+---
+
+<MainLayout title="Quienes Somos | Escuela Esperanza">
+  <Encabezado />
+  <EncabezadoScroll />
+  <MenuMovil />
+
+  <main class="internal-page">
+    <section class="internal-hero">
+      <div class="internal-hero-content">
+        <span class="internal-kicker">Quienes somos</span>
+        <h1>{quienesSomosDetalle.titulo}</h1>
+      </div>
+    </section>
+
+    <section class="about-page-section">
+      <div class="about-page-container">
+        <div class="about-page-content">
+          {quienesSomosDetalle.texto.map((parrafo) => (
+            <p>{parrafo}</p>
+          ))}
+        </div>
+
+        <div class="about-page-media">
+          <img src={quienesSomosDetalle.imagen} alt="Escuela Esperanza" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <PiePagina />
+  <ScriptsSitio />
+</MainLayout>
