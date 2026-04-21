@@ -1,0 +1,69 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Encabezado from "../componentes/encabezado/Encabezado.astro";
+import EncabezadoScroll from "../componentes/encabezado/EncabezadoScroll.astro";
+import MenuMovil from "../componentes/encabezado/MenuMovil.astro";
+import PiePagina from "../componentes/pie-pagina/PiePagina.astro";
+import ScriptsSitio from "../componentes/sistema/ScriptsSitio.astro";
+import { formatNewsDate, getNewsImage, listarNoticiasPublicas } from "../lib/noticias";
+import { rutas } from "../lib/rutas";
+
+const noticias = listarNoticiasPublicas();
+---
+
+<MainLayout title="Noticias | Escuela Esperanza">
+  <Encabezado />
+  <EncabezadoScroll />
+  <MenuMovil />
+
+  <main class="internal-page">
+    <section class="internal-hero">
+      <div class="internal-hero-content">
+        <span class="internal-kicker">Noticias</span>
+        <h1>Todas las noticias</h1>
+      </div>
+    </section>
+
+    <section class="news-page-section">
+      <div class="news-page-header">
+        <p>
+          En esta vista se mostraran todas las noticias publicadas por el
+          administrador.
+        </p>
+      </div>
+
+      {
+        noticias.length > 0 ? (
+          <div class="news-page-list">
+            {noticias.map((noticia) => (
+              <article class="news-page-card">
+                <div class="news-page-media">
+                  <img src={getNewsImage(noticia.imagen)} alt="Imagen de noticia" />
+
+                  <div class="news-date-badge news-date-badge--page">
+                    <span class="news-date-icon">
+                      <i class="fa-solid fa-book-open"></i>
+                    </span>
+                    <span class="news-date-text">{formatNewsDate(noticia.fecha)}</span>
+                  </div>
+                </div>
+
+                <div class="news-page-content">
+                  <p>{noticia.contenido}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="news-empty-state news-empty-state--page">
+            <p>Todavia no hay noticias cargadas para mostrar al publico.</p>
+            <a href={rutas.adminNoticias} class="home-news-button">Ir al panel admin</a>
+          </div>
+        )
+      }
+    </section>
+  </main>
+
+  <PiePagina />
+  <ScriptsSitio />
+</MainLayout>

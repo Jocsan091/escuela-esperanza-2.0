@@ -1,0 +1,124 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Encabezado from "../../componentes/encabezado/Encabezado.astro";
+import EncabezadoScroll from "../../componentes/encabezado/EncabezadoScroll.astro";
+import MenuMovil from "../../componentes/encabezado/MenuMovil.astro";
+import PiePagina from "../../componentes/pie-pagina/PiePagina.astro";
+import ScriptsSitio from "../../componentes/sistema/ScriptsSitio.astro";
+import {
+  formatNewsDate,
+  getNewsImage,
+  listarNoticiasAdmin
+} from "../../lib/noticias";
+import { imagenNoticiaPredeterminada } from "../../data/noticias";
+import { rutas } from "../../lib/rutas";
+
+const noticiasAdmin = listarNoticiasAdmin();
+---
+
+<MainLayout title="Admin Noticias | Escuela Esperanza">
+  <Encabezado />
+  <EncabezadoScroll />
+  <MenuMovil />
+
+  <main class="internal-page admin-page">
+    <section class="internal-hero">
+      <div class="internal-hero-content">
+        <span class="internal-kicker">Administrador</span>
+        <h1>Gestion de noticias</h1>
+      </div>
+    </section>
+
+    <section class="admin-news-section">
+      <div class="admin-news-toolbar">
+        <h2>Subir nueva noticia</h2>
+        <a href={rutas.noticias} class="admin-secondary-link">Ver noticias publicadas</a>
+      </div>
+
+      <div class="admin-news-layout">
+        <form class="admin-news-form">
+          <label class="admin-field">
+            <span>Imagen de la noticia</span>
+            <input type="file" accept="image/*" />
+          </label>
+
+          <label class="admin-field">
+            <span>Texto de la noticia</span>
+            <textarea
+              rows="10"
+              placeholder="Escribe aqui el contenido completo de la noticia"
+            ></textarea>
+          </label>
+
+          <div class="admin-form-actions">
+            <button type="submit" class="admin-primary-button">Subir nueva noticia</button>
+          </div>
+        </form>
+
+        <aside class="admin-news-help">
+          <h3>Vista previa estructural</h3>
+          <p>
+            Si el administrador no carga una imagen, el sistema puede usar una imagen
+            predeterminada para representar la noticia.
+          </p>
+
+          <div class="admin-default-image-card">
+            <img src={imagenNoticiaPredeterminada} alt="Imagen predeterminada de noticia" />
+            <div class="news-date-badge news-date-badge--page">
+              <span class="news-date-icon">
+                <i class="fa-solid fa-book-open"></i>
+              </span>
+              <span class="news-date-text">21/04/2026</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="admin-news-list-section">
+        <div class="admin-news-list-header">
+          <h2>Noticias cargadas</h2>
+          <p>
+            Aqui el administrador podra revisar, editar o eliminar las noticias
+            publicadas cuando el backend real este conectado.
+          </p>
+        </div>
+
+        {
+          noticiasAdmin.length > 0 ? (
+            <div class="admin-news-list">
+              {noticiasAdmin.map((noticia) => (
+                <article class="admin-news-item">
+                  <img src={getNewsImage(noticia.imagen)} alt="Imagen de noticia" />
+
+                  <div class="admin-news-item-body">
+                    <strong>{formatNewsDate(noticia.fecha)}</strong>
+                    <p>{noticia.contenido}</p>
+
+                    <div class="admin-news-item-actions">
+                      <button type="button" class="admin-secondary-link">
+                        Editar
+                      </button>
+                      <button type="button" class="admin-secondary-link">
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="news-empty-state news-empty-state--page">
+              <p>
+                Aun no hay noticias creadas. Cuando conectemos el backend, desde aqui
+                se podran crear, editar y eliminar.
+              </p>
+            </div>
+          )
+        }
+      </section>
+    </section>
+  </main>
+
+  <PiePagina />
+  <ScriptsSitio />
+</MainLayout>

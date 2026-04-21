@@ -1,7 +1,9 @@
+import { rutas } from "../lib/rutas";
+
 export const menu = [
-  { label: "INICIO", href: "/" },
-  { label: "QUIENES SOMOS", href: "/quienes-somos" },
-  { label: "NOTICIAS", href: "#" },
+  { label: "INICIO", href: rutas.inicio },
+  { label: "QUIENES SOMOS", href: rutas.quienesSomos },
+  { label: "NOTICIAS", href: rutas.noticias },
   { label: "CONTACTO", href: "#" }
 ];
 
@@ -35,6 +37,7 @@ export const quienesSomosResumen = {
   texto:
     "Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza Escuela Esperanza.",
   boton: "Leer mas",
+  href: rutas.quienesSomos,
   imagen: "/images/slide2.png"
 };
 
