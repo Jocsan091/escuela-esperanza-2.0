@@ -1,0 +1,11 @@
+---
+const runtimeConfig = {
+  supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL ?? "",
+  supabaseAnonKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? "",
+  supabaseBucket: import.meta.env.PUBLIC_SUPABASE_STORAGE_BUCKET ?? "noticias",
+  defaultImage: "/images/slide3.png"
+};
+---
+
+<script id="news-runtime-config" type="application/json" set:html={JSON.stringify(runtimeConfig)}></script>
+<script src="/scripts/noticias-app.js" defer></script>

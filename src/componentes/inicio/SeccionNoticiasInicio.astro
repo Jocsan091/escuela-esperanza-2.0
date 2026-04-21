@@ -1,13 +1,5 @@
 ---
-import {
-  listarUltimasNoticias,
-  formatNewsDate,
-  getNewsImage,
-  truncateNewsText
-} from "../../lib/noticias";
 import { rutas } from "../../lib/rutas";
-
-const ultimasNoticias = listarUltimasNoticias(3);
 ---
 
 <section class="home-news-section">
@@ -20,39 +12,16 @@ const ultimasNoticias = listarUltimasNoticias(3);
     </p>
   </div>
 
-  {
-    ultimasNoticias.length > 0 ? (
-      <>
-        <div class="home-news-grid">
-          {ultimasNoticias.map((noticia) => (
-            <article class="news-card">
-              <div class="news-card-image-wrap">
-                <img src={getNewsImage(noticia.imagen)} alt="Imagen de noticia" />
+  <div class="news-setup-state" data-news-home-setup hidden></div>
 
-                <div class="news-date-badge">
-                  <span class="news-date-icon">
-                    <i class="fa-solid fa-book-open"></i>
-                  </span>
-                  <span class="news-date-text">{formatNewsDate(noticia.fecha)}</span>
-                </div>
-              </div>
+  <div class="home-news-grid" data-news-home-list></div>
 
-              <div class="news-card-content">
-                <p>{truncateNewsText(noticia.contenido, 165)}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+  <div class="news-empty-state" data-news-home-empty>
+    <p>Aun no hay noticias publicadas.</p>
+    <a href={rutas.noticias} class="home-news-button">Ir a noticias</a>
+  </div>
 
-        <div class="home-news-actions">
-          <a href={rutas.noticias} class="home-news-button">Ver mas</a>
-        </div>
-      </>
-    ) : (
-      <div class="news-empty-state">
-        <p>Aun no hay noticias publicadas.</p>
-        <a href={rutas.noticias} class="home-news-button">Ir a noticias</a>
-      </div>
-    )
-  }
+  <div class="home-news-actions" data-news-home-actions hidden>
+    <a href={rutas.noticias} class="home-news-button">Ver mas</a>
+  </div>
 </section>
