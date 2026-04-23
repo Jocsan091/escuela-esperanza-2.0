@@ -28,6 +28,7 @@
 }
 
 .home-news-header h2,
+.news-page-header h2,
 .admin-news-toolbar h2,
 .admin-news-list-header h2,
 .admin-auth-card h2 {
@@ -231,6 +232,86 @@
   gap: 34px;
 }
 
+.news-page-featured {
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) minmax(0, 1fr);
+  background: linear-gradient(135deg, #ffffff 0%, #f4f8f4 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.08);
+}
+
+.news-page-featured-media,
+.news-page-featured-content {
+  position: relative;
+}
+
+.news-page-featured-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: block;
+  object-fit: cover;
+}
+
+.news-page-featured-content {
+  padding: 42px;
+  display: grid;
+  align-content: center;
+}
+
+.news-page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 18px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #dbe8de;
+  color: #234127;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.news-page-featured-content h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 3.2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--verde-oscuro);
+  margin-bottom: 18px;
+}
+
+.news-page-featured-content p {
+  color: #555;
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+.news-page-archive-header {
+  max-width: 1250px;
+}
+
+.news-page-archive-header h3 {
+  font-family: "Oswald", sans-serif;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  color: var(--verde-oscuro);
+  margin-bottom: 8px;
+}
+
+.news-page-archive-header p {
+  color: #555;
+  line-height: 1.8;
+}
+
+.news-page-archive-grid {
+  display: grid;
+  gap: 34px;
+}
+
 .news-page-card {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
@@ -336,6 +417,21 @@
   resize: vertical;
 }
 
+.admin-checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: #2f4032;
+  font-weight: 700;
+}
+
+.admin-checkbox-field input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--verde-principal);
+}
+
 .admin-form-actions {
   display: flex;
   justify-content: flex-start;
@@ -351,6 +447,49 @@
 
 .admin-default-image-card img {
   height: 300px;
+}
+
+.admin-preview-copy {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.admin-preview-copy strong {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.7rem;
+  color: var(--verde-oscuro);
+  text-transform: uppercase;
+}
+
+.admin-preview-copy p {
+  color: #555;
+  line-height: 1.8;
+}
+
+.admin-preview-state,
+.admin-news-item-state {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.admin-preview-state[data-variant="published"],
+.admin-news-item-state--published {
+  background: #e2f1e5;
+  color: #24532c;
+}
+
+.admin-preview-state[data-variant="draft"],
+.admin-news-item-state--draft {
+  background: #f2ebd3;
+  color: #7b5d12;
 }
 
 .admin-news-list {
@@ -384,8 +523,62 @@
   color: var(--verde-principal);
 }
 
+.admin-news-item-state {
+  margin: 0 0 12px 12px;
+}
+
 .admin-news-item-body p {
   color: #555;
   line-height: 1.8;
   margin-bottom: 16px;
+}
+
+@media (max-width: 980px) {
+  .news-page-featured,
+  .news-page-card,
+  .admin-news-layout,
+  .admin-news-item {
+    grid-template-columns: 1fr;
+  }
+
+  .news-page-featured-content {
+    padding: 30px 24px;
+  }
+
+  .news-page-featured-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .admin-news-toolbar {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 720px) {
+  .home-news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-news-header h2,
+  .news-page-header h2,
+  .admin-news-toolbar h2,
+  .admin-news-list-header h2,
+  .admin-auth-card h2 {
+    font-size: 2.2rem;
+  }
+
+  .news-page-featured-media img {
+    min-height: 280px;
+  }
+
+  .news-card-content h3,
+  .news-page-content h2,
+  .admin-news-item-body h3 {
+    font-size: 1.7rem;
+  }
+
+  .news-page-featured-content h2 {
+    font-size: 2rem;
+  }
 }

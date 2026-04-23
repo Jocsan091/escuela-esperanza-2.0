@@ -26,6 +26,14 @@ Crear `.env` a partir de `.env.example` y completar:
 - `PUBLIC_SUPABASE_ANON_KEY`
 - `PUBLIC_SUPABASE_STORAGE_BUCKET`
 
+Ejemplo:
+
+```env
+PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+PUBLIC_SUPABASE_ANON_KEY=tu-anon-key
+PUBLIC_SUPABASE_STORAGE_BUCKET=noticias
+```
+
 ## SQL recomendado
 
 ```sql
@@ -56,6 +64,27 @@ using (true)
 with check (true);
 ```
 
+Si quieres mantener `updated_at` sincronizado al editar, puedes agregar:
+
+```sql
+create or replace function public.set_current_timestamp_updated_at()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists set_noticias_updated_at on public.noticias;
+
+create trigger set_noticias_updated_at
+before update on public.noticias
+for each row
+execute function public.set_current_timestamp_updated_at();
+```
+
 ## Storage recomendado
 
 Crear bucket publico llamado `noticias`.
@@ -76,10 +105,22 @@ Ese usuario entrara por:
 ## Flujo
 
 1. El admin inicia sesion
-2. Sube imagen, titulo y texto
+2. Completa imagen, titulo, texto y define si la noticia queda publicada
 3. La noticia se guarda en Supabase
-4. La home muestra las ultimas 3
+4. La home muestra las ultimas 3 publicadas
 5. `/noticias/` muestra todas las publicadas
+6. Los borradores solo aparecen en el panel admin
+
+## Checklist rapido
+
+1. Crear tabla `noticias`
+2. Activar RLS
+3. Crear politicas
+4. Crear bucket `noticias`
+5. Crear usuario admin en Supabase Auth
+6. Completar `.env`
+7. Ejecutar `npm run dev`
+8. Entrar a `/admin/noticias/` y crear la primera noticia
 
 ## Importante
 

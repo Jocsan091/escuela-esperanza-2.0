@@ -53,7 +53,15 @@ import { rutas } from "../../lib/rutas";
 
       <div data-admin-panel hidden>
         <div class="admin-news-toolbar">
-          <h2>Panel de noticias</h2>
+          <div>
+            <span class="home-news-kicker">Panel interno</span>
+            <h2>Panel de noticias</h2>
+            <p>
+              Desde aqui el administrador podra cargar nuevas noticias, editar
+              publicaciones existentes y decidir si quedan visibles para el
+              publico.
+            </p>
+          </div>
           <div class="admin-toolbar-actions">
             <a href={rutas.noticias} class="admin-secondary-link">Ver noticias publicadas</a>
             <button type="button" class="admin-secondary-link" data-admin-logout>
@@ -96,6 +104,11 @@ import { rutas } from "../../lib/rutas";
               ></textarea>
             </label>
 
+            <label class="admin-checkbox-field">
+              <input data-news-published-input type="checkbox" checked />
+              <span>Publicar esta noticia en la vista publica</span>
+            </label>
+
             <div class="admin-form-actions">
               <button type="submit" class="admin-primary-button">
                 <span data-admin-submit-label>Subir nueva noticia</span>
@@ -108,7 +121,7 @@ import { rutas } from "../../lib/rutas";
           </form>
 
           <aside class="admin-news-help">
-            <h3>Vista previa estructural</h3>
+            <h3>Vista previa</h3>
             <p>
               Si el administrador no carga una imagen, el sistema usara una imagen
               predeterminada para representar la noticia.
@@ -120,8 +133,17 @@ import { rutas } from "../../lib/rutas";
                 <span class="news-date-icon">
                   <i class="fa-solid fa-book-open"></i>
                 </span>
-                <span class="news-date-text">21/04/2026</span>
+                <span class="news-date-text" data-admin-preview-date>23/04/2026</span>
               </div>
+            </div>
+
+            <div class="admin-preview-copy">
+              <strong data-admin-preview-title>Titulo de la noticia</strong>
+              <p data-admin-preview-content>
+                Aqui apareceran el titulo y el texto para que el administrador
+                tenga una referencia rapida antes de publicar.
+              </p>
+              <span class="admin-preview-state" data-admin-preview-state>Visible para el publico</span>
             </div>
           </aside>
         </div>

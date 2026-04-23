@@ -48,6 +48,12 @@
     return imageUrl || defaultImage;
   }
 
+  function getPreviewText(text, maxLength) {
+    const trimmed = String(text || "").trim();
+    if (!trimmed) return "";
+    return truncateText(trimmed, maxLength);
+  }
+
   function setText(element, text) {
     if (element) element.textContent = text;
   }
@@ -267,25 +273,55 @@
     }
 
     emptyState.hidden = true;
-    list.innerHTML = items
-      .map(
-        (item) => `
-          <article class="news-page-card">
-            <div class="news-page-media">
-              <img src="${escapeHtml(getImageUrl(item.imagen_url))}" alt="${escapeHtml(item.titulo)}" />
-              <div class="news-date-badge news-date-badge--page">
-                <span class="news-date-icon"><i class="fa-solid fa-book-open"></i></span>
-                <span class="news-date-text">${escapeHtml(formatDate(item.fecha_publicacion))}</span>
-              </div>
+    const [featuredItem, ...otherItems] = items;
+
+    list.innerHTML = `
+      <article class="news-page-featured">
+        <div class="news-page-featured-media">
+          <img src="${escapeHtml(getImageUrl(featuredItem.imagen_url))}" alt="${escapeHtml(featuredItem.titulo)}" />
+          <div class="news-date-badge news-date-badge--page">
+            <span class="news-date-icon"><i class="fa-solid fa-book-open"></i></span>
+            <span class="news-date-text">${escapeHtml(formatDate(featuredItem.fecha_publicacion))}</span>
+          </div>
+        </div>
+        <div class="news-page-featured-content">
+          <span class="news-page-eyebrow">Noticia destacada</span>
+          <h2>${escapeHtml(featuredItem.titulo)}</h2>
+          <p>${escapeHtml(featuredItem.contenido)}</p>
+        </div>
+      </article>
+      ${
+        otherItems.length
+          ? `
+            <div class="news-page-archive-header">
+              <h3>Archivo de noticias</h3>
+              <p>Revisa otras publicaciones recientes de la comunidad educativa.</p>
             </div>
-            <div class="news-page-content">
-              <h2>${escapeHtml(item.titulo)}</h2>
-              <p>${escapeHtml(item.contenido)}</p>
+            <div class="news-page-archive-grid">
+              ${otherItems
+                .map(
+                  (item) => `
+                    <article class="news-page-card">
+                      <div class="news-page-media">
+                        <img src="${escapeHtml(getImageUrl(item.imagen_url))}" alt="${escapeHtml(item.titulo)}" />
+                        <div class="news-date-badge news-date-badge--page">
+                          <span class="news-date-icon"><i class="fa-solid fa-book-open"></i></span>
+                          <span class="news-date-text">${escapeHtml(formatDate(item.fecha_publicacion))}</span>
+                        </div>
+                      </div>
+                      <div class="news-page-content">
+                        <h2>${escapeHtml(item.titulo)}</h2>
+                        <p>${escapeHtml(item.contenido)}</p>
+                      </div>
+                    </article>
+                  `
+                )
+                .join("")}
             </div>
-          </article>
-        `
-      )
-      .join("");
+          `
+          : ""
+      }
+    `;
   }
 
   async function initPublicPages() {
@@ -336,12 +372,17 @@
     const titleInput = document.querySelector("[data-news-title-input]");
     const contentInput = document.querySelector("[data-news-content-input]");
     const imageInput = document.querySelector("[data-news-image-input]");
+    const publishedInput = document.querySelector("[data-news-published-input]");
     const idInput = document.querySelector("[data-news-id-input]");
     const submitLabel = document.querySelector("[data-admin-submit-label]");
     const formTitle = document.querySelector("[data-admin-form-title]");
     const cancelEditButton = document.querySelector("[data-admin-cancel-edit]");
     const logoutButton = document.querySelector("[data-admin-logout]");
     const setupState = document.querySelector("[data-admin-setup]");
+    const previewTitle = document.querySelector("[data-admin-preview-title]");
+    const previewContent = document.querySelector("[data-admin-preview-content]");
+    const previewDate = document.querySelector("[data-admin-preview-date]");
+    const previewState = document.querySelector("[data-admin-preview-state]");
 
     if (
       !managerForm ||
@@ -350,7 +391,8 @@
       !titleInput ||
       !contentInput ||
       !imageInput ||
-      !idInput
+      !idInput ||
+      !publishedInput
     ) {
       return;
     }
@@ -371,13 +413,38 @@
     let session = getStoredSession();
     let adminNews = [];
 
+    function syncPreview() {
+      if (previewTitle) {
+        previewTitle.textContent = titleInput.value.trim() || "Titulo de la noticia";
+      }
+
+      if (previewContent) {
+        previewContent.textContent =
+          getPreviewText(contentInput.value, 220) ||
+          "Aqui apareceran el titulo y el texto para que el administrador tenga una referencia rapida antes de publicar.";
+      }
+
+      if (previewDate) {
+        previewDate.textContent = formatDate(new Date().toISOString());
+      }
+
+      if (previewState) {
+        previewState.textContent = publishedInput.checked
+          ? "Visible para el publico"
+          : "Guardada sin publicar";
+        previewState.dataset.variant = publishedInput.checked ? "published" : "draft";
+      }
+    }
+
     function resetForm() {
       managerForm.reset();
       idInput.value = "";
+      publishedInput.checked = true;
       if (submitLabel) submitLabel.textContent = "Subir nueva noticia";
       if (formTitle) formTitle.textContent = "Subir nueva noticia";
       if (cancelEditButton) cancelEditButton.hidden = true;
       if (previewImage) previewImage.src = defaultImage;
+      syncPreview();
     }
 
     function showAdminStatus(message, isError) {
@@ -402,6 +469,9 @@
               <img src="${escapeHtml(getImageUrl(item.imagen_url))}" alt="${escapeHtml(item.titulo)}" />
               <div class="admin-news-item-body">
                 <strong>${escapeHtml(formatDate(item.fecha_publicacion))}</strong>
+                <span class="admin-news-item-state admin-news-item-state--${item.publicada ? "published" : "draft"}">
+                  ${item.publicada ? "Publicada" : "Borrador"}
+                </span>
                 <h3>${escapeHtml(item.titulo)}</h3>
                 <p>${escapeHtml(truncateText(item.contenido, 180))}</p>
                 <div class="admin-news-item-actions">
@@ -471,6 +541,10 @@
       });
     }
 
+    titleInput.addEventListener("input", syncPreview);
+    contentInput.addEventListener("input", syncPreview);
+    publishedInput.addEventListener("change", syncPreview);
+
     if (cancelEditButton) {
       cancelEditButton.addEventListener("click", () => {
         resetForm();
@@ -485,6 +559,7 @@
       const content = String(contentInput.value || "").trim();
       const selectedId = String(idInput.value || "").trim();
       const file = imageInput.files?.[0];
+      const isPublished = Boolean(publishedInput.checked);
 
       if (!title || !content) {
         showAdminStatus("Debes completar titulo y texto.", true);
@@ -509,8 +584,8 @@
           titulo: title,
           contenido: content,
           imagen_url: imageUrl,
-          fecha_publicacion: new Date().toISOString(),
-          publicada: true
+          fecha_publicacion: currentItem?.fecha_publicacion || new Date().toISOString(),
+          publicada: isPublished
         };
 
         if (selectedId) {
@@ -542,10 +617,12 @@
         idInput.value = String(item.id);
         titleInput.value = item.titulo;
         contentInput.value = item.contenido;
+        publishedInput.checked = Boolean(item.publicada);
         if (previewImage) previewImage.src = getImageUrl(item.imagen_url);
         if (submitLabel) submitLabel.textContent = "Guardar cambios";
         if (formTitle) formTitle.textContent = "Editar noticia";
         if (cancelEditButton) cancelEditButton.hidden = false;
+        syncPreview();
         window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
@@ -583,6 +660,8 @@
     } else {
       applySessionState();
     }
+
+    syncPreview();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
